@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;       /* white */
+    --foreground: 222 47% 11%;     /* very dark blue/gray */
+
+    --card: 0 0% 100%;             /* white */
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;          /* white */
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 228 70% 40%;        /* #1e40af - Deep blue */
+    --primary-foreground: 0 0% 100%; /* white */
+
+    --secondary: 217 18% 34%;      /* #475569 - Slate gray */
+    --secondary-foreground: 0 0% 100%; /* white */
+
+    --accent: 163 91% 30%;         /* #059669 - Emerald green */
+    --accent-foreground: 0 0% 100%; /* white */
+
+    --warning: 31 93% 44%;         /* #d97706 - Amber */
+    --warning-foreground: 0 0% 100%; /* white */
+
+    --error: 0 71% 50%;            /* #dc2626 - Red */
+    --error-foreground: 0 0% 100%; /* white */
+
+    --success: 163 91% 30%;        /* Reusing accent green */
+    --success-foreground: 0 0% 100%; /* white */
+
+    --info: 228 70% 40%;           /* Reusing primary blue */
+    --info-foreground: 0 0% 100%; /* white */
+
+    --muted: 210 10% 98%;          /* Light gray */
+    --muted-foreground: 217 18% 34%; /* secondary */
+
+    --border: 210 10% 90%;         /* light gray */
+    --input: 210 10% 90%;          /* light gray */
+    --ring: 228 70% 40%;           /* primary */
+
+    --gray-50: 0 0% 97%;           /* hsl for #f9fafb */
+    --gray-100: 210 10% 96%;        /* hsl for #f3f4f6 */
+    --gray-200: 210 10% 91%;        /* hsl for #e5e7eb */
+    --gray-300: 210 10% 81%;        /* hsl for #d1d5db */
+    --gray-400: 210 10% 67%;        /* hsl for #9ca3af */
+    --gray-500: 210 10% 46%;        /* hsl for #6b7280 */
+    --gray-600: 210 10% 36%;        /* hsl for #4b5563 */
+    --gray-700: 210 10% 29%;        /* hsl for #374151 */
+    --gray-800: 210 10% 16%;        /* hsl for #1f2937 */
+    --gray-900: 210 10% 9%;         /* hsl for #111827 */
+
+    --radius: 0.5rem; /* Consistent border radius */
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 215 20% 65%;
+    --secondary-foreground: 222 47% 11%;
+
+    --accent: 160 84% 39%;
+    --accent-foreground: 222 47% 11%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 11%;
+
+    --error: 0 63% 31%;
+    --error-foreground: 210 40% 98%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 222 47% 11%;
+
+    --info: 217 91% 60%;
+    --info-foreground: 222 47% 11%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 217 91% 60%;
+
+    --gray-50: 210 10% 97%;
+    --gray-100: 210 10% 96%;
+    --gray-200: 210 10% 91%;
+    --gray-300: 210 10% 81%;
+    --gray-400: 210 10% 67%;
+    --gray-500: 210 10% 46%;
+    --gray-600: 210 10% 36%;
+    --gray-700: 210 10% 29%;
+    --gray-800: 210 10% 16%;
+    --gray-900: 210 10% 9%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
