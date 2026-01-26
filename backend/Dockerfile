@@ -18,14 +18,14 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
-RUN pip install poetry
+RUN pip install poetry --timeout 120
 
 # Copy dependency files
 COPY pyproject.toml poetry.lock /app/
 
 # Install dependencies (only runtime dependencies)
 RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --no-dev --only=main
+    && poetry install --no-interaction --no-ansi --only=main
 
 # Production stage
 FROM python:3.11-slim

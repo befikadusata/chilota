@@ -1,6 +1,6 @@
 # Multi-stage Dockerfile for frontend development
 # Dependencies stage
-FROM node:18-alpine AS deps
+FROM node:20-alpine AS deps
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ COPY package.json package-lock.json* ./
 RUN npm ci
 
 # Development stage
-FROM node:18-alpine AS dev
+FROM node:20-alpine AS dev
 
 WORKDIR /app
 
