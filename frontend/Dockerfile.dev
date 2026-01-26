@@ -1,0 +1,28 @@
+# Multi-stage Dockerfile for frontend development
+# Dependencies stage
+FROM node:18-alpine AS deps
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json* ./
+
+# Install dependencies
+RUN npm ci
+
+# Development stage
+FROM node:18-alpine AS dev
+
+WORKDIR /app
+
+# Copy installed dependencies from deps stage
+COPY --from=deps /app/node_modules ./node_modules
+
+# Copy the rest of the application
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start the development server
+CMD ["npm", "run", "dev"]
