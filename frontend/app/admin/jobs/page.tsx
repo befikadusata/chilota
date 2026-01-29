@@ -26,18 +26,18 @@ export default function JobModerationPage() {
     fetchJobs();
   }, []);
 
-  const handleApprove = async (id: number) => {
+  const handleApprove = async (id: string | number) => {
     try {
-      await jobsApi.approve(id);
+      await jobsApi.approve(id.toString());
       setJobs(jobs.filter(job => job.id !== id));
     } catch (error) {
       console.error('Error approving job:', error);
     }
   };
 
-  const handleReject = async (id: number) => {
+  const handleReject = async (id: string | number) => {
     try {
-      await jobsApi.reject(id);
+      await jobsApi.reject(id.toString());
       setJobs(jobs.filter(job => job.id !== id));
     } catch (error) {
       console.error('Error rejecting job:', error);

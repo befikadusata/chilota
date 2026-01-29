@@ -24,7 +24,7 @@ FIELD_ENCRYPTION_KEY = config('FIELD_ENCRYPTION_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 
 # Application definition
@@ -245,7 +245,9 @@ CACHES = {
 }
 
 # CORS settings for frontend integration (Next.js)
-CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGEINS', default='http://localhost:3000,http://127.0.0.1:3000', cast=Csv())
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='http://localhost:3000,http://127.0.0.1:3000', cast=Csv())
+
+import tempfile
 
 # Logging Configuration
 LOGGING = {
@@ -269,7 +271,7 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": "django.log",
+            "filename": os.path.join(tempfile.gettempdir(), "django.log"),
             "formatter": "verbose",
         },
         "console": {
@@ -280,7 +282,7 @@ LOGGING = {
         "audit_file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": "audit.log",
+            "filename": os.path.join(tempfile.gettempdir(), "audit.log"),
             "formatter": "audit",
         },
     },

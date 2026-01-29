@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Ethiopic } from "next/font/google";
+import { Inter } from "next/font/google";
 import { AuthProvider } from "@/lib/auth/auth-context";
 import "./globals.css";
 import PublicHeader from "@/components/layout/PublicHeader";
 import PublicFooter from "@/components/layout/PublicFooter";
 
+// Remove Noto_Sans_Ethiopic for now to fix the build issue
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
-const noto_sans_ethiopic = Noto_Sans_Ethiopic({
-  subsets: ["latin"],
-  variable: "--font-noto-sans-ethiopic",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -30,6 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="theme-color" content="hsl(var(--primary))" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -47,7 +46,8 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${noto_sans_ethiopic.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
+        style={{ fontFamily: "'Inter', 'Noto Sans Ethiopic', Arial, sans-serif" }}
       >
         <AuthProvider>
           <div className="min-h-screen flex flex-col">

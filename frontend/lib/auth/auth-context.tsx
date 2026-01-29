@@ -9,7 +9,7 @@ import React, {
   useEffect,
 } from 'react';
 import { User } from '@/lib/types/user.types';
-import { authApi } from '@/lib/api';
+import { authApi, login as apiLogin, register as apiRegister } from '@/lib/api';
 
 interface AuthContextType {
   user: User | null;
@@ -60,9 +60,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const { user: userData, access_token } = await authApi.login({ email, password });
+      const userData = await apiLogin(email, password);
       setUser(userData);
-      setToken(access_token);
+      // Token is handled by the apiLogin function
     } catch (error) {
       throw error;
     }
@@ -70,9 +70,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const register = async (full_name: string, email: string, password: string, role: 'worker' | 'employer' | 'admin') => {
     try {
-      const { user: userData, access_token } = await authApi.register({ full_name, email, password, role });
+      const userData = await apiRegister(full_name, email, password, role);
       setUser(userData);
-      setToken(access_token);
+      // Token is handled by the apiRegister function
     } catch (error) {
       throw error;
     }

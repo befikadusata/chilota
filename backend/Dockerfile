@@ -15,6 +15,7 @@ RUN apt-get update \
         build-essential \
         libpq-dev \
         gcc \
+        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
@@ -42,6 +43,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         postgresql-client \
         libpq5 \
+        libmagic1 \
     && rm -rf /var/lib/apt/lists/* \
     && groupadd -r appuser && useradd -m -r -g appuser appuser
 
@@ -53,7 +55,11 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 COPY . /app/
 
 # Change ownership to non-root user
-RUN chown -R appuser:appuser /app
+#RUN chown -R appuser:appuser /app
+
+RUN mkdir -p /app/logs \
+    && chown -R appuser:appuser /app
+    
 USER appuser
 
 # Expose port

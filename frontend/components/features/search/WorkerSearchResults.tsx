@@ -129,9 +129,9 @@ export default function WorkerSearchResults({ workers, loading, searchHistory = 
               <div key={worker.id} className="bg-card rounded-lg shadow-md overflow-hidden border border-border">
                 <div className="p-4">
                   <div className="flex items-center mb-4">
-                    {worker.profile_photo_url ? (
+                    {worker.avatar ? (
                       <Image
-                        src={worker.profile_photo_url}
+                        src={worker.avatar}
                         alt={worker.full_name}
                         width={64}
                         height={64}
@@ -145,9 +145,9 @@ export default function WorkerSearchResults({ workers, loading, searchHistory = 
                       <h3 className="text-lg font-semibold">{worker.full_name}</h3>
                       <div className="flex items-center">
                         <span className="text-warning mr-1">★</span>
-                        <span>{worker.rating.toFixed(1)}</span>
+                        <span>{worker.rating?.toFixed(1) || '0.0'}</span>
                         <span className="mx-2">•</span>
-                        <span>{worker.years_experience} years exp</span>
+                        <span>{worker.experience_years} years exp</span>
                       </div>
                     </div>
                   </div>
@@ -158,19 +158,19 @@ export default function WorkerSearchResults({ workers, loading, searchHistory = 
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
-                      {worker.current_location}
+                      {worker.city}
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      <span className="font-medium">Region:</span> {worker.region_of_origin}
+                      <span className="font-medium">Region:</span> {worker.city}
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      <span className="font-medium">Age:</span> {worker.age}
+                      <span className="font-medium">Country:</span> {worker.country}
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      <span className="font-medium">Education:</span> {worker.education_level}
+                      <span className="font-medium">Education:</span> {worker.education}
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      <span className="font-medium">Religion:</span> {worker.religion.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                      <span className="font-medium">Language:</span> {worker.languages.join(', ')}
                     </div>
                   </div>
 
@@ -195,7 +195,7 @@ export default function WorkerSearchResults({ workers, loading, searchHistory = 
                     <div className="flex flex-wrap gap-1">
                       {worker.languages.slice(0, 3).map((language, index) => (
                         <span key={index} className="bg-success/10 text-success text-xs px-2 py-1 rounded">
-                          {typeof language === 'string' ? language : language.language}
+                          {language}
                         </span>
                       ))}
                       {worker.languages.length > 3 && (

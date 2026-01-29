@@ -25,18 +25,18 @@ export default function UserManagementPage() {
     fetchUsers();
   }, []);
 
-  const handleFlag = async (id: number) => {
+  const handleFlag = async (id: string | number) => {
     try {
-      await usersApi.flag(id);
+      await usersApi.flag(id.toString());
       // Optionally, update the user's status in the local state
     } catch (error) {
       console.error('Error flagging user:', error);
     }
   };
 
-  const handleSuspend = async (id: number) => {
+  const handleSuspend = async (id: string | number) => {
     try {
-      await usersApi.suspend(id);
+      await usersApi.suspend(id.toString());
       // Optionally, update the user's status in the local state
     } catch (error) {
       console.error('Error suspending user:', error);

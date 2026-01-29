@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import { jobsApi } from '@/lib/api';
+import { useAuth } from '@/lib/auth/auth-context';
 
 import { Job } from '@/lib/types';
 
@@ -18,16 +19,19 @@ export default function JobListings() {
 
 
 
+  const { user } = useAuth();
+
   useEffect(() => {
 
     const fetchJobs = async () => {
-
       try {
+        if (!user) {
+          setError('Not authenticated');
+          return;
+        }
 
-        const data = await jobsApi.getByEmployer();
-
+        const data = await jobsApi.getByEmployer(user.id.toString()); // Pass the employer ID as string
         setJobs(data);
-
       } catch (err: any) {
 
         setError(err.message || 'Failed to load jobs');
@@ -46,7 +50,7 @@ export default function JobListings() {
 
     fetchJobs();
 
-  }, []);
+  }, [user]);
 
 
 
@@ -146,7 +150,7 @@ export default function JobListings() {
 
                                 </td>
 
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-muted-foreground">{job.applicants.length}</td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-muted-foreground">{job.applications_count}</td>
 
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-muted-foreground">
 
@@ -154,13 +158,13 @@ export default function JobListings() {
 
                                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
 
-                                      job.status === 'Active' ? 'bg-success/10 text-success' : 'bg-warning/10 text-warning'
+                                      job.status === 'active' ? 'bg-success/10 text-success' : 'bg-warning/10 text-warning'
 
                                     }`}
 
                                   >
 
-                                    {job.status}
+                                    {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
 
                                   </span>
 

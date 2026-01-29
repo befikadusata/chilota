@@ -3,9 +3,8 @@ export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
   REGISTER: '/register',
-  DASHBOARD: '/dashboard',
   PROFILE: '/profile',
-  
+
   // Auth routes
   AUTH: {
     LOGIN: '/login',
@@ -13,7 +12,7 @@ export const ROUTES = {
     PASSWORD_RESET: '/password-reset',
     VERIFY_EMAIL: '/verify-email',
   },
-  
+
   // Dashboard routes
   DASHBOARD: {
     ROOT: '/dashboard',

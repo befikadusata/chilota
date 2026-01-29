@@ -52,9 +52,9 @@ export default function ShortlistManagement() {
       {shortlist.map((shortlistedWorker) => (
         <div key={shortlistedWorker.id} className="bg-card overflow-hidden shadow rounded-lg">
           <div className="p-5">
-            <h3 className="text-lg font-medium text-card-foreground">{shortlistedWorker.worker.name}</h3>
+            <h3 className="text-lg font-medium text-card-foreground">{shortlistedWorker.worker.full_name}</h3>
             <p className="mt-1 text-sm text-muted-foreground">{shortlistedWorker.worker.profession}</p>
-            <p className="mt-1 text-sm text-muted-foreground">Experience: {shortlistedWorker.worker.experience} years</p>
+            <p className="mt-1 text-sm text-muted-foreground">Experience: {shortlistedWorker.worker.experience_years} years</p>
           </div>
           <div className="p-5 border-t border-border">
             <div className="flex justify-end space-x-2">

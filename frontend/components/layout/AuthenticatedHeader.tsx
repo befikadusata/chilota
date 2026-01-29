@@ -2,7 +2,7 @@
 'use client';
 
 import Link from "next/link";
-import { Button } from "@/app/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Bell, LogOut, Settings, User } from "lucide-react";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useRouter } from "next/navigation"; // Use next/navigation for Next.js router

@@ -25,18 +25,18 @@ export default function WorkerApprovalPage() {
     fetchWorkers();
   }, []);
 
-  const handleApprove = async (id: number) => {
+  const handleApprove = async (id: string | number) => {
     try {
-      await workersApi.approve(id);
+      await workersApi.approve(id.toString());
       setWorkers(workers.filter(worker => worker.id !== id));
     } catch (error) {
       console.error('Error approving worker:', error);
     }
   };
 
-  const handleReject = async (id: number) => {
+  const handleReject = async (id: string | number) => {
     try {
-      await workersApi.reject(id);
+      await workersApi.reject(id.toString());
       setWorkers(workers.filter(worker => worker.id !== id));
     } catch (error) {
       console.error('Error rejecting worker:', error);

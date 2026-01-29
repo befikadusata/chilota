@@ -157,18 +157,20 @@ export default function EditWorkerProfile() {
         if (response.ok) {
           const data = await response.json();
           setFormData({
-            fayda_id: data.fayda_id,
-            full_name: data.full_name,
-            age: data.age.toString(),
-            place_of_birth: data.place_of_birth,
-            region_of_origin: data.region_of_origin,
-            current_location: data.current_location,
-            emergency_contact_name: data.emergency_contact_name,
-            emergency_contact_phone: data.emergency_contact_phone,
-            education_level: data.education_level,
-            religion: data.religion,
-            working_time: data.working_time,
-            years_experience: data.years_experience.toString(),
+            fayda_id: data.fayda_id || '',
+            full_name: data.full_name || '',
+            age: data.age ? data.age.toString() : '',
+            place_of_birth: data.place_of_birth || '',
+            region_of_origin: data.region_of_origin || '',
+            current_location: data.current_location || '',
+            emergency_contact_name: data.emergency_contact_name || '',
+            emergency_contact_phone: data.emergency_contact_phone || '',
+            languages: data.languages || [],
+            education_level: data.education_level || '',
+            religion: data.religion || '',
+            working_time: data.working_time || '',
+            skills: data.skills || [],
+            years_experience: data.years_experience ? data.years_experience.toString() : '',
           });
 
           // Set languages
